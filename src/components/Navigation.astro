@@ -1,0 +1,83 @@
+---
+// Componente de navegación
+---
+
+<nav class="fixed top-0 w-full bg-black/90 backdrop-blur-sm z-50 border-b border-blue-500/20">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center py-4">
+      <!-- Logo / Nombre -->
+      <div class="text-xl font-bold text-blue-400">
+        <a href="#home" class="hover:text-blue-300 transition-colors">
+          Eder Blanco
+        </a>
+      </div>
+      
+      <!-- Navegación Desktop -->
+      <div class="hidden md:flex space-x-8">
+        <a href="#home" class="text-white hover:text-blue-400 transition-colors">
+          Inicio
+        </a>
+        <a href="#about" class="text-white hover:text-blue-400 transition-colors">
+          Sobre Mí
+        </a>
+        <a href="#education" class="text-white hover:text-blue-400 transition-colors">
+          Educación
+        </a>
+        <a href="#projects" class="text-white hover:text-blue-400 transition-colors">
+          Proyectos
+        </a>
+        <a href="#contact" class="text-white hover:text-blue-400 transition-colors">
+          Contacto
+        </a>
+      </div>
+      
+      <!-- Menú móvil botón -->
+      <div class="md:hidden">
+        <button id="mobile-menu-btn" class="text-white hover:text-blue-400">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+    
+    <!-- Menú móvil -->
+    <div id="mobile-menu" class="md:hidden hidden pb-4">
+      <div class="flex flex-col space-y-2">
+        <a href="#home" class="text-white hover:text-blue-400 transition-colors py-2">
+          Inicio
+        </a>
+        <a href="#about" class="text-white hover:text-blue-400 transition-colors py-2">
+          Sobre Mí
+        </a>
+        <a href="#education" class="text-white hover:text-blue-400 transition-colors py-2">
+          Educación
+        </a>
+        <a href="#projects" class="text-white hover:text-blue-400 transition-colors py-2">
+          Proyectos
+        </a>
+        <a href="#contact" class="text-white hover:text-blue-400 transition-colors py-2">
+          Contacto
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<script>
+  // Funcionalidad del menú móvil
+  const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+  const mobileMenu = document.getElementById('mobile-menu');
+  
+  mobileMenuBtn?.addEventListener('click', () => {
+    mobileMenu?.classList.toggle('hidden');
+  });
+  
+  // Cerrar menú al hacer click en un link
+  const mobileLinks = mobileMenu?.querySelectorAll('a');
+  mobileLinks?.forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu?.classList.add('hidden');
+    });
+  });
+</script>
