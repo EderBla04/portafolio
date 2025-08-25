@@ -59,16 +59,19 @@ const allProjects = projects;
           data-category={project.category}
         >
           <!-- Imagen del proyecto -->
-          <div class="relative h-48 bg-gradient-to-br from-blue-900/30 to-gray-800/30 flex items-center justify-center">
+          <div class="relative h-48 bg-gradient-to-br from-blue-900/30 to-gray-800/30">
             <img 
               src={project.image} 
               alt={project.title}
-              class="w-full h-full object-cover"
+              class="absolute inset-0 w-full h-full object-cover"
+              onload="this.style.display='block'; this.parentElement.querySelector('.project-placeholder').style.display='none'; this.parentElement.style.background='none';"
+              onerror="this.style.display='none'; this.parentElement.querySelector('.project-placeholder').style.display='flex';"
               style="display: none;"
-              onload="this.style.display='block'; this.parentElement.style.background='none';"
             />
             <!-- Placeholder si no hay imagen -->
-            <div class="text-6xl text-blue-400/30">💼</div>
+            <div class="project-placeholder absolute inset-0 flex items-center justify-center">
+              <div class="text-6xl text-blue-400/50">💼</div>
+            </div>
             
             <!-- Badge de estado -->
             <div class={`absolute top-3 right-3 px-2 py-1 rounded-full text-xs font-medium ${

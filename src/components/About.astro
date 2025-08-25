@@ -90,24 +90,71 @@
       </div>
     </div>
     
-    <!-- Estadísticas o métricas (opcional) -->
-    <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+    <!-- Estadísticas o métricas -->
+    <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
       <div class="space-y-2">
-        <div class="text-3xl font-bold text-blue-400">X+</div>
+        <div class="text-3xl font-bold text-blue-400">2+</div>
         <div class="text-gray-400">Años de Experiencia</div>
       </div>
       <div class="space-y-2">
-        <div class="text-3xl font-bold text-blue-400">XX+</div>
-        <div class="text-gray-400">Proyectos Completados</div>
+        <div class="text-3xl font-bold text-blue-400">3</div>
+        <div class="text-gray-400">Proyectos Desarrollados</div>
       </div>
       <div class="space-y-2">
-        <div class="text-3xl font-bold text-blue-400">XX+</div>
-        <div class="text-gray-400">Tecnologías Dominadas</div>
-      </div>
-      <div class="space-y-2">
-        <div class="text-3xl font-bold text-blue-400">XXX+</div>
+        <div class="text-3xl font-bold text-blue-400" id="github-commits">0+</div>
         <div class="text-gray-400">Commits en GitHub</div>
       </div>
     </div>
   </div>
 </section>
+
+<script>
+  // Función para obtener commits de GitHub
+  async function fetchGitHubCommits() {
+    try {
+      const username = 'EderBla04'; // Tu username de GitHub
+      const response = await fetch(`https://api.github.com/users/${username}/repos?per_page=100`);
+      
+      if (!response.ok) {
+        throw new Error('Error al obtener repositorios');
+      }
+      
+      const repos = await response.json();
+      let totalCommits = 0;
+      
+      // Obtener commits de cada repositorio público
+      const commitPromises = repos.map(async (repo: any) => {
+        try {
+          const commitsResponse = await fetch(`https://api.github.com/repos/${username}/${repo.name}/commits?per_page=100`);
+          if (commitsResponse.ok) {
+            const commits = await commitsResponse.json();
+            return commits.length;
+          }
+          return 0;
+        } catch (error) {
+          return 0;
+        }
+      });
+      
+      const commitCounts = await Promise.all(commitPromises);
+      totalCommits = commitCounts.reduce((sum: number, count: number) => sum + count, 0);
+      
+      // Actualizar el elemento en la página
+      const commitsElement = document.getElementById('github-commits');
+      if (commitsElement) {
+        commitsElement.textContent = `${totalCommits}+`;
+      }
+      
+    } catch (error) {
+      console.error('Error al obtener commits de GitHub:', error);
+      // En caso de error, mostrar un número estimado
+      const commitsElement = document.getElementById('github-commits');
+      if (commitsElement) {
+        commitsElement.textContent = '100+';
+      }
+    }
+  }
+  
+  // Ejecutar cuando la página se carga
+  document.addEventListener('DOMContentLoaded', fetchGitHubCommits);
+</script>
