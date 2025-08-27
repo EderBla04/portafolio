@@ -1,5 +1,6 @@
 ---
 // Componente About - Sección sobre mí
+import { Icon } from 'astro-icon/components';
 ---
 
 <section id="about" class="py-20 bg-black">
@@ -46,69 +47,37 @@
           <div class="flex flex-wrap gap-3">
             <!-- HTML5 -->
             <div class="flex items-center gap-2 bg-blue-900/30 px-3 py-2 rounded-full border border-blue-700 hover:bg-blue-900/40 transition-colors">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                <path d="M1.5 1.5L3.5 20.5L12 23L20.5 20.5L22.5 1.5H1.5Z" stroke="#E34F26" stroke-width="1" fill="#E34F26"/>
-                <path d="M12 21.5V3.5H20L18.5 18.5L12 21.5Z" fill="#FF5722"/>
-                <path d="M5.5 5.5H12V7.5H7.5L8 9.5H12V11.5H9.5L10 13.5H12V15.5H8L7 11.5L6.5 9.5L6 7.5L5.5 5.5Z" fill="white"/>
-                <path d="M12 5.5H18.5L18 7.5H12V9.5H17.5L17 11.5H12V13.5H16.5L16 15.5H12V13.5H14L13.5 11.5H12V9.5H15.5L15 7.5H12V5.5Z" fill="white"/>
-              </svg>
+              <Icon name="simple-icons:html5" class="w-4 h-4" />
               <span class="text-blue-300 text-sm font-medium">HTML5</span>
             </div>
             
             <!-- CSS3 -->
             <div class="flex items-center gap-2 bg-blue-900/30 px-3 py-2 rounded-full border border-blue-700 hover:bg-blue-900/40 transition-colors">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                <path d="M1.5 1.5L3.5 20.5L12 23L20.5 20.5L22.5 1.5H1.5Z" stroke="#1572B6" stroke-width="1" fill="#1572B6"/>
-                <path d="M12 21.5V3.5H20L18.5 18.5L12 21.5Z" fill="#33A9DC"/>
-                <path d="M6 6H12V8H8V10H12V12H6V6Z" fill="white"/>
-                <path d="M12 6H18V8H14V10H18V14H12V16H16V18H12V14H14V12H12V6Z" fill="white"/>
-              </svg>
+              <Icon name="simple-icons:css3" class="w-4 h-4" />
               <span class="text-blue-300 text-sm font-medium">CSS3</span>
             </div>
             
             <!-- JavaScript -->
             <div class="flex items-center gap-2 bg-blue-900/30 px-3 py-2 rounded-full border border-blue-700 hover:bg-blue-900/40 transition-colors">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                <rect x="2" y="2" width="20" height="20" rx="2" fill="#F7DF1E"/>
-                <path d="M8.5 16.5C8.5 17.3 8.8 17.8 9.5 17.8C10.1 17.8 10.5 17.5 10.5 16.8V11H12V16.8C12 18.5 11 19.5 9.5 19.5C8.1 19.5 7.2 18.7 6.8 17.6L8.5 16.5Z" fill="#000"/>
-                <path d="M13.5 16.5C13.9 17.2 14.6 17.8 15.5 17.8C16.2 17.8 16.7 17.5 16.7 16.9C16.7 16.2 16.2 15.9 15.3 15.5L14.8 15.3C13.4 14.7 12.5 13.8 12.5 12.3C12.5 10.9 13.5 9.8 15.4 9.8C16.8 9.8 17.8 10.3 18.5 11.5L16.9 12.6C16.6 12.1 16.2 11.9 15.4 11.9C14.6 11.9 14.1 12.4 14.1 12.6C14.1 13.2 14.6 13.4 15.4 13.8L15.9 14C17.6 14.7 18.5 15.6 18.5 17.1C18.5 18.8 17.3 19.8 15.5 19.8C13.7 19.8 12.6 19 12 17.8L13.5 16.5Z" fill="#000"/>
-              </svg>
+              <Icon name="simple-icons:javascript" class="w-4 h-4" />
               <span class="text-blue-300 text-sm font-medium">JavaScript</span>
             </div>
             
             <!-- TypeScript -->
             <div class="flex items-center gap-2 bg-blue-900/30 px-3 py-2 rounded-full border border-blue-700 hover:bg-blue-900/40 transition-colors">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                <rect x="2" y="2" width="20" height="20" rx="2" fill="#3178C6"/>
-                <path d="M12 7V9H8V17H6V9H2V7H12Z" fill="white"/>
-                <path d="M13 11.5C13 10.7 13.6 10 14.5 10C15.3 10 15.8 10.4 16 11L17.5 10.3C17 9.1 16 8.5 14.5 8.5C12.6 8.5 11.5 9.8 11.5 11.5C11.5 13.2 12.6 14.5 14.5 14.5C15.2 14.5 15.8 14.2 16.2 13.8V15.5C15.8 15.8 15.2 16 14.5 16C12.6 16 11.5 14.7 11.5 13V11.5H13Z" fill="white"/>
-                <path d="M18 11.5H19.5V13C19.5 14.4 20.4 15 21.5 15V16.5C19.8 16.5 18 15.5 18 13V11.5Z" fill="white"/>
-              </svg>
+              <Icon name="simple-icons:typescript" class="w-4 h-4" />
               <span class="text-blue-300 text-sm font-medium">TypeScript</span>
             </div>
             
             <!-- React -->
             <div class="flex items-center gap-2 bg-blue-900/30 px-3 py-2 rounded-full border border-blue-700 hover:bg-blue-900/40 transition-colors">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                <circle cx="12" cy="12" r="2" fill="#61DAFB"/>
-                <path d="M12 1C15.5 1 18.5 2.5 20.5 5C22.5 7.5 23 10.5 22 13.5C21 16.5 18.5 19 15.5 20.5C12.5 22 9 22 6 20.5C3 19 1 16.5 1 13.5C1 10.5 2 7.5 4 5C6 2.5 9 1 12 1Z" stroke="#61DAFB" stroke-width="1" fill="none"/>
-                <path d="M12 6C16 6 19.5 7.5 21.5 10C23.5 12.5 23.5 15.5 21.5 18C19.5 20.5 16 22 12 22C8 22 4.5 20.5 2.5 18C0.5 15.5 0.5 12.5 2.5 10C4.5 7.5 8 6 12 6Z" stroke="#61DAFB" stroke-width="1" fill="none"/>
-                <path d="M12 6C12 10 10.5 13.5 8 15.5C5.5 17.5 2.5 18 0 17C-2.5 16 -4 13.5 -3 10.5C-2 7.5 1 5 4 4C7 3 10 4 12 6Z" stroke="#61DAFB" stroke-width="1" fill="none"/>
-              </svg>
+              <Icon name="simple-icons:react" class="w-4 h-4" />
               <span class="text-blue-300 text-sm font-medium">React</span>
             </div>
             
             <!-- Astro -->
             <div class="flex items-center gap-2 bg-blue-900/30 px-3 py-2 rounded-full border border-blue-700 hover:bg-blue-900/40 transition-colors">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                <path d="M8.5 2L12 8L15.5 2L22 12L16 22H8L2 12L8.5 2Z" fill="url(#astro-gradient)"/>
-                <defs>
-                  <linearGradient id="astro-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" style="stop-color:#FF5D01"/>
-                    <stop offset="100%" style="stop-color:#FF1639"/>
-                  </linearGradient>
-                </defs>
-              </svg>
+              <Icon name="simple-icons:astro" class="w-4 h-4" />
               <span class="text-blue-300 text-sm font-medium">Astro</span>
             </div>
           </div>
@@ -120,77 +89,37 @@
           <div class="flex flex-wrap gap-3">
             <!-- Node.js -->
             <div class="flex items-center gap-2 bg-blue-900/30 px-3 py-2 rounded-full border border-blue-700 hover:bg-blue-900/40 transition-colors">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                <path d="M12 2L22 8V16L12 22L2 16V8L12 2Z" fill="#339933"/>
-                <path d="M12 2L7 5V8L12 11L17 8V5L12 2Z" fill="#90C53F"/>
-                <path d="M7 8V16L12 19L17 16V8L12 11L7 8Z" fill="#339933"/>
-              </svg>
+              <Icon name="simple-icons:nodedotjs" class="w-4 h-4" />
               <span class="text-blue-300 text-sm font-medium">Node.js</span>
             </div>
             
             <!-- Python -->
             <div class="flex items-center gap-2 bg-blue-900/30 px-3 py-2 rounded-full border border-blue-700 hover:bg-blue-900/40 transition-colors">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                <path d="M8 2C6 2 4 3 4 5V8H8V9H4V11C4 13 6 14 8 14H10V11C10 9 8 8 6 8H5V5C5 4 6 3 8 3H16C17 3 18 4 18 5V8H19C21 8 22 9 22 11V14H18V15H22V17C22 19 21 20 19 20H11V17C11 15 13 14 15 14H16V17C16 18 15 19 14 19H6C5 19 4 18 4 17V14H8V13H4V11C4 9 5 8 7 8H8V5C8 3 10 2 12 2H8Z" fill="url(#python-gradient)"/>
-                <circle cx="7" cy="5" r="1" fill="#FFF"/>
-                <circle cx="17" cy="17" r="1" fill="#FFF"/>
-                <defs>
-                  <linearGradient id="python-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" style="stop-color:#3776AB"/>
-                    <stop offset="100%" style="stop-color:#FFD43B"/>
-                  </linearGradient>
-                </defs>
-              </svg>
+              <Icon name="simple-icons:python" class="w-4 h-4" />
               <span class="text-blue-300 text-sm font-medium">Python</span>
             </div>
             
             <!-- Java -->
             <div class="flex items-center gap-2 bg-blue-900/30 px-3 py-2 rounded-full border border-blue-700 hover:bg-blue-900/40 transition-colors">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                <path d="M14.5 20.5C14.5 21.3 13.8 22 13 22H11C10.2 22 9.5 21.3 9.5 20.5V19.5H14.5V20.5Z" fill="#ED8B00"/>
-                <path d="M8.5 16.5C8.5 17.3 9.2 18 10 18H14C14.8 18 15.5 17.3 15.5 16.5C15.5 15.7 14.8 15 14 15H10C9.2 15 8.5 15.7 8.5 16.5Z" fill="#ED8B00"/>
-                <path d="M7.5 13C7.5 13.8 8.2 14.5 9 14.5H15C15.8 14.5 16.5 13.8 16.5 13C16.5 12.2 15.8 11.5 15 11.5H9C8.2 11.5 7.5 12.2 7.5 13Z" fill="#5382A1"/>
-                <path d="M6.5 9.5C6.5 10.3 7.2 11 8 11H16C16.8 11 17.5 10.3 17.5 9.5C17.5 8.7 16.8 8 16 8H8C7.2 8 6.5 8.7 6.5 9.5Z" fill="#5382A1"/>
-                <path d="M5.5 6C5.5 6.8 6.2 7.5 7 7.5H17C17.8 7.5 18.5 6.8 18.5 6C18.5 5.2 17.8 4.5 17 4.5H7C6.2 4.5 5.5 5.2 5.5 6Z" fill="#F89820"/>
-                <path d="M10 2C10 2.8 10.7 3.5 11.5 3.5H12.5C13.3 3.5 14 2.8 14 2C14 1.2 13.3 0.5 12.5 0.5H11.5C10.7 0.5 10 1.2 10 2Z" fill="#F89820"/>
-                <ellipse cx="12" cy="5" rx="1" ry="0.5" fill="#FFF"/>
-                <ellipse cx="12" cy="8.5" rx="1" ry="0.5" fill="#FFF"/>
-              </svg>
+              <Icon name="simple-icons:openjdk" class="w-4 h-4" />
               <span class="text-blue-300 text-sm font-medium">Java</span>
             </div>
             
             <!-- Laravel -->
             <div class="flex items-center gap-2 bg-blue-900/30 px-3 py-2 rounded-full border border-blue-700 hover:bg-blue-900/40 transition-colors">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                <path d="M23.642 5.43C22.638 5.43 21.86 6.208 21.86 7.212C21.86 8.216 22.638 8.994 23.642 8.994C24.646 8.994 25.424 8.216 25.424 7.212C25.424 6.208 24.646 5.43 23.642 5.43Z" fill="#FF2D20"/>
-                <path d="M2.5 7L6 5.5L12 8L18 5.5L21.5 7L18 8.5L12 11L6 8.5L2.5 7Z" fill="#FF2D20"/>
-                <path d="M6 12L12 14.5L18 12V15L12 17.5L6 15V12Z" fill="#FF2D20"/>
-                <path d="M6 17.5L12 20L18 17.5V20L12 22.5L6 20V17.5Z" fill="#FF2D20"/>
-              </svg>
+              <Icon name="simple-icons:laravel" class="w-4 h-4" />
               <span class="text-blue-300 text-sm font-medium">Laravel</span>
             </div>
             
             <!-- PostgreSQL -->
             <div class="flex items-center gap-2 bg-blue-900/30 px-3 py-2 rounded-full border border-blue-700 hover:bg-blue-900/40 transition-colors">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                <path d="M12 2C10 2 8.5 3 8 4.5C7.5 6 8 7.5 9 8.5C10 9.5 11.5 10 12 10C12.5 10 14 9.5 15 8.5C16 7.5 16.5 6 16 4.5C15.5 3 14 2 12 2Z" fill="#336791"/>
-                <path d="M12 10C9 10 6 12 6 15V18C6 20 8 22 11 22H13C16 22 18 20 18 18V15C18 12 15 10 12 10Z" fill="#336791"/>
-                <ellipse cx="12" cy="6" rx="3" ry="1" fill="#FFF"/>
-              </svg>
+              <Icon name="simple-icons:postgresql" class="w-4 h-4" />
               <span class="text-blue-300 text-sm font-medium">PostgreSQL</span>
             </div>
             
             <!-- PHP -->
             <div class="flex items-center gap-2 bg-blue-900/30 px-3 py-2 rounded-full border border-blue-700 hover:bg-blue-900/40 transition-colors">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                <ellipse cx="12" cy="12" rx="10" ry="6" fill="#777BB4"/>
-                <path d="M7 9H9.5C10.5 9 11 9.5 11 10.5C11 11.5 10.5 12 9.5 12H8V15H7V9Z" fill="white"/>
-                <path d="M8 10V11H9.5C10 11 10 10.5 10 10.5C10 10 10 10 9.5 10H8Z" fill="#777BB4"/>
-                <path d="M12 9H14.5C15.5 9 16 9.5 16 10.5C16 11.5 15.5 12 14.5 12H13V15H12V9Z" fill="white"/>
-                <path d="M13 10V11H14.5C15 11 15 10.5 15 10.5C15 10 15 10 14.5 10H13Z" fill="#777BB4"/>
-                <path d="M17 9H19.5C20.5 9 21 9.5 21 10.5C21 11.5 20.5 12 19.5 12H18V15H17V9Z" fill="white"/>
-                <path d="M18 10V11H19.5C20 11 20 10.5 20 10.5C20 10 20 10 19.5 10H18Z" fill="#777BB4"/>
-              </svg>
+              <Icon name="simple-icons:php" class="w-4 h-4" />
               <span class="text-blue-300 text-sm font-medium">PHP</span>
             </div>
           </div>
@@ -202,24 +131,13 @@
           <div class="flex flex-wrap gap-3">
             <!-- Flutter -->
             <div class="flex items-center gap-2 bg-blue-900/30 px-3 py-2 rounded-full border border-blue-700 hover:bg-blue-900/40 transition-colors">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                <path d="M14.314 1L9 6.314L14.314 11.628L19.628 6.314L14.314 1Z" fill="#42A5F5"/>
-                <path d="M14.314 11.628L9 16.942L14.314 22.256L19.628 16.942L14.314 11.628Z" fill="#1976D2"/>
-                <path d="M14.314 11.628L9 6.314L4.686 10.628L9 14.942L14.314 11.628Z" fill="#42A5F5"/>
-              </svg>
+              <Icon name="simple-icons:flutter" class="w-4 h-4" />
               <span class="text-blue-300 text-sm font-medium">Flutter</span>
             </div>
             
             <!-- Dart -->
             <div class="flex items-center gap-2 bg-blue-900/30 px-3 py-2 rounded-full border border-blue-700 hover:bg-blue-900/40 transition-colors">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                <path d="M4 4H14L20 10V20H4V4Z" fill="#01579B"/>
-                <path d="M14 4V10H20L14 4Z" fill="#40C4FF"/>
-                <path d="M6 7H12V8H6V7Z" fill="#FFF"/>
-                <path d="M6 10H16V11H6V10Z" fill="#FFF"/>
-                <path d="M6 13H16V14H6V13Z" fill="#FFF"/>
-                <path d="M6 16H13V17H6V16Z" fill="#FFF"/>
-              </svg>
+              <Icon name="simple-icons:dart" class="w-4 h-4" />
               <span class="text-blue-300 text-sm font-medium">Dart</span>
             </div>
           </div>
@@ -231,48 +149,25 @@
           <div class="flex flex-wrap gap-3">
             <!-- Git -->
             <div class="flex items-center gap-2 bg-blue-900/30 px-3 py-2 rounded-full border border-blue-700 hover:bg-blue-900/40 transition-colors">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                <path d="M11.2 1.2L1.2 11.2C0.9 11.5 0.9 12 1.2 12.3L11.2 22.3C11.5 22.6 12 22.6 12.3 22.3L22.3 12.3C22.6 12 22.6 11.5 22.3 11.2L12.3 1.2C12 0.9 11.5 0.9 11.2 1.2Z" fill="#F05032"/>
-                <circle cx="8" cy="12" r="1.5" fill="white"/>
-                <circle cx="16" cy="12" r="1.5" fill="white"/>
-                <path d="M10 12H14" stroke="white" stroke-width="1"/>
-              </svg>
+              <Icon name="simple-icons:git" class="w-4 h-4" />
               <span class="text-blue-300 text-sm font-medium">Git</span>
             </div>
             
             <!-- Docker -->
             <div class="flex items-center gap-2 bg-blue-900/30 px-3 py-2 rounded-full border border-blue-700 hover:bg-blue-900/40 transition-colors">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                <rect x="2" y="8" width="3" height="3" fill="#2496ED"/>
-                <rect x="6" y="8" width="3" height="3" fill="#2496ED"/>
-                <rect x="10" y="8" width="3" height="3" fill="#2496ED"/>
-                <rect x="14" y="8" width="3" height="3" fill="#2496ED"/>
-                <rect x="6" y="5" width="3" height="3" fill="#2496ED"/>
-                <rect x="10" y="5" width="3" height="3" fill="#2496ED"/>
-                <rect x="10" y="2" width="3" height="3" fill="#2496ED"/>
-                <path d="M18 8C20 8 22 10 22 12C22 14 20 16 18 16H4C2 16 1 14 1 12C1 10 2 8 4 8" stroke="#2496ED" stroke-width="1" fill="none"/>
-              </svg>
+              <Icon name="simple-icons:docker" class="w-4 h-4" />
               <span class="text-blue-300 text-sm font-medium">Docker</span>
             </div>
             
             <!-- VS Code -->
             <div class="flex items-center gap-2 bg-blue-900/30 px-3 py-2 rounded-full border border-blue-700 hover:bg-blue-900/40 transition-colors">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                <path d="M17.5 2L7 9L3.5 6.5L2 8V16L3.5 17.5L7 15L17.5 22L22 19V5L17.5 2Z" fill="#007ACC"/>
-                <path d="M17.5 2L7 9L17.5 16V2Z" fill="#1F9CF0"/>
-              </svg>
+              <Icon name="simple-icons:visualstudiocode" class="w-4 h-4" />
               <span class="text-blue-300 text-sm font-medium">VS Code</span>
             </div>
             
             <!-- Linux -->
             <div class="flex items-center gap-2 bg-blue-900/30 px-3 py-2 rounded-full border border-blue-700 hover:bg-blue-900/40 transition-colors">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
-                <circle cx="12" cy="12" r="10" fill="#FCC624"/>
-                <path d="M8 10C8.5 9.5 9.5 9.5 10 10C10.5 10.5 10.5 11.5 10 12C9.5 12.5 8.5 12.5 8 12C7.5 11.5 7.5 10.5 8 10Z" fill="#000"/>
-                <path d="M14 10C14.5 9.5 15.5 9.5 16 10C16.5 10.5 16.5 11.5 16 12C15.5 12.5 14.5 12.5 14 12C13.5 11.5 13.5 10.5 14 10Z" fill="#000"/>
-                <path d="M12 7C11 7 10 8 10 9H14C14 8 13 7 12 7Z" fill="#000"/>
-                <path d="M8 14C8 15 9 16 10 16H14C15 16 16 15 16 14" stroke="#000" stroke-width="1" fill="none"/>
-              </svg>
+              <Icon name="simple-icons:linux" class="w-4 h-4" />
               <span class="text-blue-300 text-sm font-medium">Linux</span>
             </div>
           </div>

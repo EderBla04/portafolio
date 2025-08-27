@@ -9,8 +9,10 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^5.13.3",
     "@astrojs/tailwind": "^5.1.4",
+    "@iconify-json/simple-icons": "^1.2.49",
+    "astro": "^5.13.3",
+    "astro-icon": "^1.1.5",
     "tailwindcss": "^3.4.16"
   }
 }
