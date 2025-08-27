@@ -5,11 +5,13 @@ import icon from 'astro-icon';
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://ederblanco.dev',
   integrations: [
     tailwind(),
     icon({
       include: {
-        "simple-icons": ["*"]
+        "simple-icons": ["*"],
+        "vscode-icons": ["*"]
       }
     })
   ]
