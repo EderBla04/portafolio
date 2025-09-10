@@ -1,8 +1,41 @@
 ---
-import { projects, getFeaturedProjects } from '../data/projects.ts';
+import { getAllProjects, getFeaturedProjects, urlFor } from '../lib/sanityClient.ts';
 
-const featuredProjects = getFeaturedProjects();
-const allProjects = projects;
+// Definir interfaz para proyectos
+interface Project {
+  _id: string;
+  title: string;
+  description: string;
+  image: any;
+  technologies: string[];
+  category: string;
+  status: string;
+  featured: boolean;
+  githubUrl: string;
+  demoUrl?: string;
+}
+
+// Obtener datos con tipado
+const allProjects = await getAllProjects() as Project[];
+const featuredProjects = await getFeaturedProjects() as Project[];
+
+// Función helper para obtener URL de imagen
+function getImageUrl(image: any): string {
+  if (typeof image === 'string') {
+    return image; // URL estática
+  }
+  if (image && typeof image === 'object') {
+    try {
+      const imageUrl = urlFor(image);
+      if (imageUrl) {
+        return imageUrl.width(400).height(300).url(); // Imagen de Sanity
+      }
+    } catch (e) {
+      console.error("Error al procesar imagen:", e);
+    }
+  }
+  return '/projects/default.jpg'; // Imagen por defecto
+}
 ---
 
 <section id="projects" class="py-20 bg-black">
@@ -53,7 +86,7 @@ const allProjects = projects;
     
     <!-- Grid de proyectos -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-grid">
-      {allProjects.map((project) => (
+      {allProjects.map((project: Project) => (
         <div 
           class={`project-card bg-gray-900/50 border border-blue-500/20 rounded-lg overflow-hidden hover:border-blue-400/50 transition-all duration-300 hover:transform hover:scale-105 ${project.featured ? 'featured' : ''}`}
           data-category={project.category}
@@ -61,7 +94,7 @@ const allProjects = projects;
           <!-- Imagen del proyecto -->
           <div class="relative h-48 bg-gradient-to-br from-blue-900/30 to-gray-800/30">
             <img 
-              src={project.image} 
+              src={getImageUrl(project.image)} 
               alt={project.title}
               class="absolute inset-0 w-full h-full object-cover"
               onload="this.style.display='block'; this.parentElement.querySelector('.project-placeholder').style.display='none'; this.parentElement.style.background='none';"
@@ -103,7 +136,7 @@ const allProjects = projects;
             
             <!-- Tecnologías -->
             <div class="flex flex-wrap gap-2 mb-4">
-              {project.technologies.slice(0, 3).map((tech) => (
+              {project.technologies.slice(0, 3).map((tech: string) => (
                 <span class="bg-blue-900/30 text-blue-300 px-2 py-1 rounded text-xs">
                   {tech}
                 </span>
@@ -128,9 +161,9 @@ const allProjects = projects;
                 </svg>
                 GitHub
               </a>
-              {project.liveUrl && (
+              {project.demoUrl && (
                 <a 
-                  href={project.liveUrl} 
+                  href={project.demoUrl} 
                   target="_blank" 
                   rel="noopener noreferrer"
                   class="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-300"
