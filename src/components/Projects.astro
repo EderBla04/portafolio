@@ -136,14 +136,14 @@ function getImageUrl(image: any): string {
             
             <!-- Tecnologías -->
             <div class="flex flex-wrap gap-2 mb-4">
-              {project.technologies.slice(0, 3).map((tech: string) => (
+              {(project.technologies || []).slice(0, 3).map((tech: string) => (
                 <span class="bg-blue-900/30 text-blue-300 px-2 py-1 rounded text-xs">
                   {tech}
                 </span>
               ))}
-              {project.technologies.length > 3 && (
+              {(project.technologies || []).length > 3 && (
                 <span class="text-gray-500 text-xs px-2 py-1">
-                  +{project.technologies.length - 3} más
+                  +{(project.technologies || []).length - 3} más
                 </span>
               )}
             </div>
