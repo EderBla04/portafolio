@@ -18,7 +18,7 @@ const sanityClient = createClient({
   projectId: import.meta.env.PUBLIC_SANITY_PROJECT_ID || '2a5byq8s',
   dataset: import.meta.env.PUBLIC_SANITY_DATASET || 'production',
   apiVersion: import.meta.env.PUBLIC_SANITY_API_VERSION || '2023-03-20',
-  useCdn: false, // `false` si quieres datos frescos
+  useCdn: true, // true para mejor rendimiento y cache
 });
 
 // Crear el builder de imágenes
@@ -38,6 +38,10 @@ export function urlFor(source: SanityImageSource) {
 // Obtener todos los proyectos (combina estáticos y CMS)
 export async function getAllProjects() {
   try {
+    console.log('Intentando conectar con Sanity...');
+    console.log('Project ID:', import.meta.env.PUBLIC_SANITY_PROJECT_ID || '2a5byq8s');
+    console.log('Dataset:', import.meta.env.PUBLIC_SANITY_DATASET || 'production');
+    
     const cmsProjects = await sanityClient.fetch(`
       *[_type == "project"] | order(order asc, featured desc, _createdAt desc) {
         _id,
@@ -49,16 +53,19 @@ export async function getAllProjects() {
         category,
         status,
         featured,
-        githubUrl,
-        demoUrl,
+        "githubUrl": coalesce(githubUrl, ""),
+        "demoUrl": coalesce(demoUrl, ""),
         startDate,
         endDate,
         order
       }
     `);
     
+    console.log('Proyectos obtenidos de Sanity:', cmsProjects?.length || 0);
+    
     // Siempre obtener proyectos estáticos
     const staticProjects = getStaticProjects();
+    console.log('Proyectos estáticos:', staticProjects.length);
     
     // Combinar proyectos estáticos con los de CMS
     const allProjects = [...staticProjects];
@@ -67,6 +74,7 @@ export async function getAllProjects() {
       allProjects.push(...cmsProjects);
     }
     
+    console.log('Total de proyectos:', allProjects.length);
     return allProjects;
   } catch (error) {
     console.error("Error al obtener proyectos de Sanity:", error);
@@ -89,8 +97,8 @@ export async function getFeaturedProjects() {
         category,
         status,
         featured,
-        githubUrl,
-        demoUrl
+        "githubUrl": coalesce(githubUrl, ""),
+        "demoUrl": coalesce(demoUrl, "")
       }
     `);
     
@@ -127,8 +135,8 @@ export async function getProjectsByCategory(category: string) {
         category,
         status,
         featured,
-        githubUrl,
-        demoUrl
+        "githubUrl": coalesce(githubUrl, ""),
+        "demoUrl": coalesce(demoUrl, "")
       }
     `, { category });
     
