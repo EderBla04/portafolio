@@ -1,0 +1,176 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { getAllProjects } from '../lib/sanityClient.ts';
+
+// Definir interfaz para proyectos
+interface Project {
+  _id: string;
+  title: string;
+  description: string;
+  image: any;
+  technologies: string[];
+  category: string;
+  status: string;
+  featured: boolean;
+  githubUrl: string;
+  demoUrl?: string;
+}
+
+// Obtener proyectos de Sanity
+let projects: Project[] = [];
+let error: string | null = null;
+let isConnectedToSanity = false;
+
+try {
+  projects = await getAllProjects() as Project[];
+  // Verificar si los proyectos vienen de Sanity o son los de respaldo
+  isConnectedToSanity = projects.length > 0 && typeof projects[0].image !== 'string';
+} catch (e) {
+  error = e instanceof Error ? e.message : 'Error desconocido';
+}
+---
+
+<Layout title="Admin - Estado del CMS">
+  <main class="min-h-screen bg-black text-white py-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 class="text-4xl font-bold text-center mb-8">
+        Estado del <span class="text-blue-400">CMS</span>
+      </h1>
+      
+      <!-- Estado de conexión -->
+      <div class="bg-gray-900/50 border border-blue-500/20 rounded-lg p-6 mb-8">
+        <h2 class="text-2xl font-semibold mb-4">Conexión con Sanity CMS</h2>
+        
+        {isConnectedToSanity ? (
+          <div class="flex items-center gap-3 text-green-400">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+            </svg>
+            <span class="font-medium">✅ Conectado a Sanity CMS</span>
+          </div>
+          <p class="text-gray-400 mt-2">Los proyectos se están cargando desde Sanity CMS</p>
+        ) : (
+          <div class="flex items-center gap-3 text-yellow-400">
+            <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+              <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"></path>
+            </svg>
+            <span class="font-medium">⚠️ Usando datos estáticos</span>
+          </div>
+          <p class="text-gray-400 mt-2">
+            No se detectó conexión con Sanity. Revisa la configuración en el archivo .env
+          </p>
+        )}
+      </div>
+
+      <!-- Error details -->
+      {error && (
+        <div class="bg-red-900/20 border border-red-500/30 rounded-lg p-6 mb-8">
+          <h3 class="text-xl font-semibold text-red-400 mb-2">Error detectado</h3>
+          <p class="text-gray-300">{error}</p>
+        </div>
+      )}
+
+      <!-- Proyectos cargados -->
+      <div class="bg-gray-900/50 border border-blue-500/20 rounded-lg p-6 mb-8">
+        <h2 class="text-2xl font-semibold mb-4">Proyectos Cargados</h2>
+        <p class="text-gray-400 mb-4">
+          Total de proyectos: <span class="text-white font-medium">{projects.length}</span>
+        </p>
+        
+        {projects.length > 0 ? (
+          <div class="space-y-3">
+            {projects.map((project) => (
+              <div class="bg-gray-800/50 rounded-lg p-4 border border-gray-700">
+                <div class="flex items-center justify-between">
+                  <div>
+                    <h3 class="font-medium text-white">{project.title}</h3>
+                    <p class="text-gray-400 text-sm">
+                      {project.category} • {project.status}
+                      {project.featured && <span class="text-yellow-400 ml-2">⭐ Destacado</span>}
+                    </p>
+                  </div>
+                  <div class="text-right">
+                    {typeof project.image !== 'string' ? (
+                      <span class="text-green-400 text-sm">📡 Sanity</span>
+                    ) : (
+                      <span class="text-blue-400 text-sm">📄 Estático</span>
+                    )}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <p class="text-gray-400">No se encontraron proyectos</p>
+        )}
+      </div>
+
+      <!-- Configuración actual -->
+      <div class="bg-gray-900/50 border border-blue-500/20 rounded-lg p-6 mb-8">
+        <h2 class="text-2xl font-semibold mb-4">Configuración</h2>
+        <div class="space-y-2 text-sm">
+          <div class="flex justify-between">
+            <span class="text-gray-400">Project ID:</span>
+            <span class="text-white">{import.meta.env.PUBLIC_SANITY_PROJECT_ID || 'No configurado'}</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-gray-400">Dataset:</span>
+            <span class="text-white">{import.meta.env.PUBLIC_SANITY_DATASET || 'No configurado'}</span>
+          </div>
+          <div class="flex justify-between">
+            <span class="text-gray-400">API Version:</span>
+            <span class="text-white">{import.meta.env.PUBLIC_SANITY_API_VERSION || 'No configurado'}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Enlaces útiles -->
+      <div class="bg-gray-900/50 border border-blue-500/20 rounded-lg p-6">
+        <h2 class="text-2xl font-semibold mb-4">Enlaces Útiles</h2>
+        <div class="space-y-3">
+          <a 
+            href="https://www.sanity.io/docs" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="block bg-blue-600 hover:bg-blue-700 text-white px-4 py-3 rounded-lg transition-colors"
+          >
+            📚 Documentación de Sanity
+          </a>
+          <a 
+            href="http://localhost:3333"
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="block bg-green-600 hover:bg-green-700 text-white px-4 py-3 rounded-lg transition-colors"
+          >
+            🎨 Abrir Sanity Studio (Local)
+          </a>
+          <a 
+            href={`https://${import.meta.env.PUBLIC_SANITY_PROJECT_ID}.sanity.studio`}
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="block bg-purple-600 hover:bg-purple-700 text-white px-4 py-3 rounded-lg transition-colors"
+          >
+            🌐 Abrir Sanity Studio (Web)
+          </a>
+          <a 
+            href="/GUIA-CMS.md" 
+            target="_blank" 
+            class="block bg-gray-600 hover:bg-gray-700 text-white px-4 py-3 rounded-lg transition-colors"
+          >
+            📖 Ver Guía de Uso
+          </a>
+        </div>
+      </div>
+
+      <!-- Volver al inicio -->
+      <div class="text-center mt-8">
+        <a 
+          href="/" 
+          class="inline-flex items-center gap-2 bg-gray-800 hover:bg-gray-700 text-white px-6 py-3 rounded-lg transition-colors"
+        >
+          ← Volver al Portafolio
+        </a>
+      </div>
+    </div>
+  </main>
+</Layout>
