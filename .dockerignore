@@ -1,0 +1,12 @@
+node_modules
+npm-debug.log
+.env
+.env.local
+.astro
+dist
+.git
+.github
+.vscode
+*.md
+.DS_Store
+studio-portafolio
